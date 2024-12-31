@@ -1,0 +1,23 @@
+<?php
+
+$config = array(
+    'HOST' => '192.168.9.243',
+    'USER' => 'root',
+    'PASS' => 'password',
+    'DB'   => 'acore_auth',
+    'CORE' => 'AzerothCore'
+);
+
+
+// General Settings
+define('EXPANSION', 2); // 0 = Vanilla / 1 = TBC / 2 = WOTLK
+define('REALMLIST', 'set realmlist logon.servername.com');
+
+// Google ReCaptcha Settings
+define('CAPTCHA_SECRET', 'PUT_YOUR_SECRET_KEY_HERE');
+define('CAPTCHA_CLIENT_ID', 'PUT_YOUR_SITE_KEY_HERE');
+
+// Message Settings
+define('SUCCESS_MESSAGE', 'Successfully Registered!');
+
+?>

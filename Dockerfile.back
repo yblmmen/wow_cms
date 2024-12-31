@@ -1,0 +1,30 @@
+# PHP 이미지를 기반으로 빌드
+
+
+FROM php:8.0-fpm
+
+# 필요한 패키지 설치
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libmariadb-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql
+
+
+# Composer 설치 (선택 사항)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# 작업 디렉토리 설정
+WORKDIR /var/www/html
+
+# 호스트 시스템의 파일을 컨테이너에 복사
+COPY . .
+
+# Nginx와 PHP-FPM을 사용하려면 포트 9000을 노출
+EXPOSE 9000
+
+# PHP-FPM 서버 실행
+CMD ["php-fpm"]
+
